@@ -1,9 +1,12 @@
+# Inicialização
 fibonacci_memoization = {0: 0, 1: 1}
 
 def fib(n: int) -> int:
+    # Reaproveita respotas anteriores
     if n in fibonacci_memoization:
         return fibonacci_memoization[n]
     
+    # Cálculo de novas respostas recursivamente
     result = fib(n - 1) + fib(n - 2)
     fibonacci_memoization[n] = result
 
