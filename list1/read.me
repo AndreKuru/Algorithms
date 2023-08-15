@@ -1,0 +1,623 @@
+List 1 - Problems:
+  A	Prime Generator
+  B	Adding Reversed Numbers
+  C	Intercepting Information
+  D	Finding Maximal Non-Trivial Monotones
+  E	Game Show!
+  F	Battleship
+  G	Kathmandu
+  H	Handling the Blocks
+  I	Fastminton
+  J	Unraveling Monty Hall
+
+***************************
+B - Adding Reversed Numbers
+
+The Antique Comedians of Malidinesia prefer comedies to tragedies. Unfortunately, most of the ancient plays are tragedies. Therefore the dramatic advisor of ACM has decided to transfigure some tragedies into comedies. Obviously, this work is very hard because the basic sense of the play must be kept intact, although all the things change to their opposites. For example the numbers: if any number appears in the tragedy, it must be converted to its reversed form before being accepted into the comedy play.
+
+Reversed number is a number written in Arabic numerals but the order of digits is reversed. The first digit becomes last and vice versa. For example, if the main hero had 1245 strawberries in the tragedy, he has 5421 of them now. Note that all the leading zeros are omitted. That means if the number ends with a zero, the zero is lost by reversing (e.g. 1200 gives 21). Also note that the reversed number never has any trailing zeros.
+
+ACM needs to calculate with reversed numbers. Your task is to add two reversed numbers and output their reversed sum. Of course, the result is not unique because any particular number is a reversed form of several numbers (e.g. 21 could be 12, 120 or 1200 before reversing). Thus we must assume that no zeros were lost by reversing (e.g. assume that the original number was 12).
+
+Input
+The input consists of N cases (equal to about 10000). The first line of the input contains only positive integer N. Then follow the cases. Each case consists of exactly one line with two positive integers separated by space. These are the reversed numbers you are to add.
+
+Output
+For each case, print exactly one line containing only one integer - the reversed sum of two reversed numbers. Omit any leading zeros in the output.
+
+Example
+Sample input: 
+3
+24 1
+4358 754
+305 794
+
+Sample output:
+34
+1998
+1
+****************************
+C - Intercepting Information
+
+Spies Breaching Computers (SBC) is a private digital spy agency that is developing a new device for intercepting information using electromagnetic waves, which allows spying even without physical contact with the target.
+
+The device tries to collect information one byte at a time, this is, a sequence of 8 bits where each of them, naturally, can have a value of 0 or 1. In certain situations, due to interference from other devices, the reading cannot be done successfully. In this case, the device returns the value 9 for the corresponding bit, informing that the reading could not be performed.
+
+In order to automate the recognition of the information the device reads, a request was made for a program that, based on the information read by the device, informs whether all bits were read successfully or not. Your task is to write this program.
+
+Input
+The input consists of a single line, containing 8 integers N₁, N₂, N₃, N₄, N₅, N₆, N₇, and N₈,
+indicating the values read by the device (Nᵢ is 0, 1 or 9 for 1 ≤ i ≤ 8 1≤i≤8).
+
+Output
+Print a single line containing the capital letter 'S' if all bits are read successfully; otherwise print a single line containing the capital letter 'F', corresponding to a failure.
+
+Sample 1
+Input	
+0 0 1 1 0 1 0 1
+Output
+S
+
+Sample 2
+Input	
+0 0 1 9 0 1 0 1
+Output
+F
+*****************************************
+D	- Finding Maximal Non-Trivial Monotones
+In this problem we will be dealing with character sequences, often called strings. A sequence is non-trivial if it contains at least two elements.
+
+Given a sequence s, we say that a chunk si, ..., sj is monotone if all its characters are equal, and we say that it is maximal if this chunk cannot be extended to left or right without losing the monotonicity.
+
+Given a sequence composed only of characters "a" and "b", determine how many characters "a" occur in non-trivial maximal monotone chunks.
+
+Input
+The input consists of two lines. The first line contains a single integer N, where 1 ≤ N ≤ 10⁵. The second line contains a string with exactly 
+N characters, composed only of the characters "a" and "b".
+
+Output
+Print a single line containing an integer representing the total number of times the character "a" occurs in non-trivial maximal monotone chunks.
+
+Sample 1
+Input	
+7
+abababa
+Output
+0
+
+Sample 2
+Input	
+7
+bababab
+Output
+0
+
+Sample 3
+Input	
+10
+aababaaabb
+Output
+5
+
+Sample 4
+Input	
+10
+bbaababaaa
+Output
+5
+**************
+E	- Game Show!
+
+The Society of Bright Competitors (SBC) organizes television shows to its members (and currently it also broadcasts online!). SBC uses a a system of credits called sbecs, which can be used by players to participate in competitions or can be exchanged for prizes at the end of each season. SBC started a new type of game, and needs to do some simulations to avoid very large losses in the prize pool!
+
+Ricardo is going to try the new game. He must bet 
+100
+100 sbecs, which are transferred to his game balance. Then, a sequence of boxes is positioned. The game consists of rounds, and the maximum number of rounds is equal to the number of boxes. At each round, Ricardo decides whether to open the next box or to quit the game. If Ricardo quits, he gets the current balance of sbecs back. If Ricardo opens the next box, its content, which is a secret number, is added to his balance and the game continues. As the secret number in the box may be negative, Ricardo may end up at a loss! The game ends when Ricardo decides to quit or when the last box is opened.
+
+SBC hired you to test the game. From the content of the boxes, you must decide what would be the largest possible balance that Ricardo could get.
+
+Input
+The first input line contains an integer C, 1≤C≤100, which is the number of boxes in the game. After the first input line, there are C more lines. 
+Each of the C lines contains the secret number of a box. The lines are in the same order of the boxes. The secret numbers are integers, V, −1000≤V≤1000.
+
+Output
+Output a line containing an integer which is the largest possible balance that Ricardo may get, given that sequence of boxes.
+
+Sample 1
+Input	
+4
+-1
+-2
+-3
+-4
+Output
+100
+
+Sample 2
+Input	
+5
+-10
+20
+-30
+40
+-50
+Output
+120
+**************
+F	- Battleship
+
+Battleship is a classic strategy game for two players. Each player places his set of ships in a 
+10
+×
+10
+10×10 grid and then games consist of guessing positions of ships. The actual game rules are not important for this problem, and many variations exist, but here we are interested on a much more basic problem. Given the lists of ships and their positions, your task is to check whether the initial positioning is valid.
+
+
+The grid rows and columns are numbered from 
+1
+1 to 
+10
+10, and ships are positioned horizontally or vertically, occupying a contiguous sequence of squares of the board. For this problem, a positioning is valid if
+
+No position is occupied by more than one ship;
+All the ships are totally contained inside the board.
+Input
+The first line of the input contains an integer 
+�
+N, 
+1
+≤
+�
+≤
+100
+1≤N≤100 the number of ships. Each of the next 
+�
+N lines contain four integers 
+�
+D, 
+�
+L, 
+�
+R and 
+�
+C with 
+�
+∈
+{
+0
+,
+1
+}
+D∈{0,1}, 
+1
+≤
+�
+≤
+5
+1≤L≤5 and 
+1
+≤
+�
+,
+�
+≤
+10
+1≤R,C≤10 describing a ship. If 
+�
+=
+0
+D=0 then the ship is aligned horizontally, and occupy positions 
+(
+�
+,
+�
+)
+…
+(
+�
+,
+�
++
+�
+−
+1
+)
+(R,C)…(R,C+L−1). Otherwise the ship is aligned vertically, occupying positions 
+(
+�
+,
+�
+)
+…
+(
+�
++
+�
+−
+1
+,
+�
+)
+(R,C)…(R+L−1,C).
+
+Output
+Output a single line containing a single character. If the initial positioning of the ships is valid, then write the upper case letter 'Y'; otherwise write the uppercase letter 'N'.
+
+Sample 1
+Input	Output
+3
+0 5 1 1
+1 5 2 2
+0 1 3 3
+Y
+Sample 2
+Input	Output
+2
+0 2 1 1
+1 1 1 2
+N
+Sample 3
+Input	Output
+1
+0 2 10 10
+N
+Sample 4
+Input	Output
+7
+0 3 2 2
+1 5 2 9
+1 2 3 6
+1 1 4 2
+0 1 6 6
+0 4 8 4
+0 2 10 1
+Y
+*************
+G	- Kathmandu
+
+The pandemic is getting better and you can finally do the thing you've been dreaming of for the past few years: eat at your favorite restaurant! The restaurant happens to be in Kathmandu, but that's fine, you can always take a plane.
+
+The problem is that planes almost always leave you restless. You consider yourself properly rested if you can sleep for 
+�
+T uninterrupted minutes, which means you are never awake from a certain moment 
+�
+t to 
+�
++
+�
+t+T. Also, you're a very easy sleeper: you can fall asleep at the start of any minute and wake up at the end of any minute.
+
+Of course, if you sleep too much you will miss all the airplane meals! That is unacceptable, as no opportunity for free food should go to waste.
+
+Luckily, the airplane company sent you the whole flight schedule: the duration of the flight, 
+�
+D minutes, the number of meals that are going to be served, 
+�
+M, and the exact time they will serve the meals, 
+�
+�
+y 
+i
+​
+ . You need to be awake at the time the meal is being served to be able to eat it, otherwise, the steward will not serve you. Since you're always hungry, you will devour the meal instantly.
+
+Now you are wondering, for the optimal plane traveling experience, can you get properly rested and still eat all meals during the flight?
+
+Input
+The first line of input contains three integers, 
+�
+T, 
+�
+D, 
+�
+M (
+1
+≤
+�
+,
+�
+≤
+1
+0
+5
+1≤T,D≤10 
+5
+ , 
+0
+≤
+�
+≤
+1000
+0≤M≤1000), representing, respectively, the number of minutes you need to sleep without interruption to be properly rested, the duration of the flight and the number of meals that are going to be served during the flight.
+
+Each of the next 
+�
+M lines contains an integer 
+�
+�
+y 
+i
+​
+  (
+0
+≤
+�
+�
+≤
+�
+0≤y 
+i
+​
+ ≤D). These integers represent the times at which each meal is going to be served, and are given in chronological order.
+
+Output
+Output a line containing one character. If you can get properly rested and still eat all meals during the flight, write the upper case letter 'Y'; otherwise write the uppercase letter 'N'.
+
+Sample 1
+Input	Output
+3 10 3
+2
+4
+7
+Y
+Sample 2
+Input	Output
+4 10 3
+2
+4
+7
+N
+Sample 3
+Input	Output
+5 5 0
+Y
+Sample 4
+Input	Output
+4 8 2
+5
+7
+Y
+Sample 5
+Input	Output
+4 8 2
+3
+4
+Y
+***********************
+H	- Handling the Blocks
+
+A friend of yours invented a game and wants to know if you can solve it or if it's impossible.
+
+He assembled a sequence of 
+�
+N blocks. Each block has a number engraved on it and some color. All numbers are distinct and between 
+1
+1 and 
+�
+N, and different blocks can be of the same color.
+
+The game works as follows: you can play as many turns as you want. In one turn, you choose two different blocks that share the same color and swap them.
+
+You have to tell whether it is possible to get the entire sequence to be sorted into ascending order by numbers engraved on the blocks.
+
+Input
+The first line contains two integers 
+�
+N and 
+�
+K (
+1
+≤
+�
+≤
+1
+0
+5
+1≤N≤10 
+5
+ , 
+1
+≤
+�
+≤
+�
+1≤K≤N), representing the number of blocks in the sequence and the number of different colors, respectively.
+
+Each of the next 
+�
+N lines contains two integers 
+�
+�
+n 
+i
+​
+  and 
+�
+�
+c 
+i
+​
+  (
+1
+≤
+�
+�
+≤
+�
+1≤n 
+i
+​
+ ≤N, 
+1
+≤
+�
+�
+≤
+�
+1≤c 
+i
+​
+ ≤K), representing the number and color of the 
+�
+i-th block, respectively.
+
+Output
+Output one line containing one character. If the sequence can be arranged in ascending order, write the upper case letter 'Y'; otherwise write the uppercase letter 'N'.
+
+Sample 1
+Input	Output
+4 2
+3 1
+4 2
+1 1
+2 2
+Y
+Sample 2
+Input	Output
+4 2
+2 1
+4 2
+1 1
+3 2
+N
+Sample 3
+Input	Output
+3 1
+1 1
+2 1
+3 1
+Y
+**************
+I	- Fastminton
+
+The Commission for the Regional deveLopment of Fastminton (CRLF) organizes annual tournaments of the novel and unusual game of Fastminton, a Badminton derivative. CRLF is proud to be organizing the third big tournament, that will be held this year.
+
+The commission's former programmer has developed a computerized system to capture and store the results from the matches, point by point, to individual files. He left before being able to complete a parser to the files, so the CRLF requires your help to guarantee that all the records can be read from the written files, to avoid loosing years of thrilling game results.
+
+A summary of the Fastminton rules was given to you to help in your tasks. It is, in essence, a shorter (or faster) version of Badminton:
+
+Fastminton matches are always played with two opposing players in a court that is divided by a net;
+Players are identified by their relative positions on the score (left and right player);
+A match is composed of three games. The player that reaches 
+2
+2 games is the winner;
+A game is won when a player reaches at least 
+5
+5 points with a at least a 
+2
+2 point difference from his opponent, or by reaching 
+10
+10 points (whichever comes first);
+The left player begins serving on the first game. For all other games, the serving player is the one that won the last game;
+Every round results in a point for the server or the receiver player. The player who scores serves the next round.
+Input
+The input is comprised of a single line containing a sequence of characters. This line represents a complete match event sequence, and may contain the characters S (server point), R (receiver point) or Q (score announcement). The input does not contains consecutive score announcements.
+
+Output
+The program must print a line containing the current score for each score announcement (Q) found on the input.
+
+If the game is underway, the announcement will be in the format "GL (PL) - GR (PR)", where GL and GR are the number of games won by the left and right players, and PL and PR are the current points of the left and right players. An asterisk (*) must be appended to the point marked of the player that will serve in the next round.
+
+If the game has finished, the announcement will follow "GL - GR" with the string "(winner)" added at the end of the game marked of the winner player.
+
+Sample 1
+Input	Output
+SRSSQSSSSQRRSS
+0 (1) - 0 (3*)
+0 (0) - 1 (2*)
+Sample 2
+Input	Output
+SRSSQSSSSQRRSSQ
+0 (1) - 0 (3*)
+0 (0) - 1 (2*)
+0 - 2 (winner)
+Sample 3
+Input	Output
+RSRSSRRRRRRRRRRSSSSRRSQ
+2 (winner) - 0
+*************************
+J	- Unraveling Monty Hall
+
+On the stage of an auditorium program there are three closed doors: door 1, door 2 and door 3. Behind one of these doors there is a car and behind the other two doors there is a goat. The production of the program randomly chooses the door where the car is without cheating. Only the host of the program knows where the car is. He asks the player to choose one of the doors. We can see that, because there is only one car, and at at least one of the two doors that the player did not choose, there has to be a goat!
+
+Therefore, the presenter can always do the following: between the two doors that the Player did not choose, he opens one that has a goat, so that the player and the spectators can see the goat. The presenter now asks: "Do you want to change your door to the other door that is still closed?". Is it a beneficial change or not? The player wants to stay with the door that has the car, of course!
+
+Paulinho saw a rigorous demonstration that the odds of the car being behind door the player chose initially is 
+1
+3
+3
+1
+​
+  and the odds of the car being behind the other door which is still closed and the player did not choose initially is 
+2
+3
+3
+2
+​
+  and therefore the exchange is advantageous. Paulinho doesn't conform, his intuition tells him that either way, the probability is 
+1
+2
+2
+1
+​
+  for both doors still closed.
+
+To bring this matter to an end, let's simulate this game thousands of times and count how many times the player won the car. We will assume that:
+
+The player picks door 1 initially;
+The player always changes doors after the presenter reveals a goat by opening one of the two doors that were not initially selected.
+In these conditions, in a game, given the number of the door that contains the car, we can know exactly whether the player will win the car or not.
+
+Input
+The first line of the input contains an integer 
+�
+N (
+1
+≤
+�
+≤
+1
+0
+4
+1≤N≤10 
+4
+ ), indicating the number of games in the simulation. Each of the 
+�
+N following rows contains an integer: 1, 2 or 3; representing the door number containing the car in that game.
+
+Output
+Your program must produce a single line containing an integer representing the number of times the player won the car in this simulation, assuming that he always chooses the door 1 and always switch doors after the host reveals a goat by opening one of the two doors that were not initially selected.
+
+Sample 1
+Input	Output
+5
+1
+3
+2
+2
+1
+3
+Sample 2
+Input	Output
+1
+1
+0
+Sample 3
+Input	Output
+15
+3
+2
+3
+1
+1
+3
+3
+2
+2
+1
+2
+3
+2
+1
+1
+10
