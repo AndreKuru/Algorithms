@@ -26,7 +26,7 @@ void check_numbers(long min_prime, long max_prime, std::vector<long> primes)
     } else if (n % 2 == 0) {
         n++;
     }
-    for (; n < max_prime; n++) {
+    for (; n <= max_prime; n++) {
         if (check_number(n, primes)) {
             std::cout << n << '\n';
         }
@@ -36,8 +36,8 @@ void check_numbers(long min_prime, long max_prime, std::vector<long> primes)
 void consult_numbers(long min_prime, long max_prime, std::vector<long> primes)
 {
     auto i = 0;
-    while (i < primes.size() and primes[i] < max_prime) {
-        if (primes[i] > min_prime) {
+    while (i < primes.size() and primes[i] <= max_prime) {
+        if (primes[i] >= min_prime) {
             std::cout << primes[i] << '\n';
         }
         i++;
@@ -67,7 +67,7 @@ int main()
     long testing_limit = ceil((double)testing_limit_aux);
     std::vector<bool> numbers(testing_limit + 1, false);
     std::vector<long> primes;
-    for (auto i = 2; i < testing_limit; i++) {
+    for (auto i = 2; i <= testing_limit; i++) {
         if (numbers[i] == false) {
             primes.push_back(i);
             for (auto j = i * i; j < numbers.size(); j += i) {
@@ -91,7 +91,7 @@ int main()
             check_numbers(min_prime, max_prime, primes);
         } else {
             consult_numbers(min_prime, testing_limit, primes);
-            check_numbers(testing_limit, max_prime, primes);
+            check_numbers(testing_limit + 1, max_prime, primes);
         }
 
         if (test != tests_amount - 1) {
