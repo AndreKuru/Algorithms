@@ -1,0 +1,375 @@
+List 2 - Problems:
+  A	Lavaspar
+  B	Escalator
+  C	Playing 23
+  D	Mother bear
+  E	Anagrams
+  F	A Change in Thermal Unit
+  G	Rock-Paper-Scissors Tournament
+  H	Clock Hands
+  I	Dates
+  J	What is the Card?
+
+************
+A - Lavaspar
+
+Word Search is a well-known hobby, although it is losing some of its prestige in recent years. The goal in this game is to find words in an array, where each cell in this matrix contains a letter.
+
+Bibika and her brother were playing Word Search, but soon they lost interest in the game, as finding all the words was getting relatively easy. Bibika would like to take her brother away from the computer, she searched the internet for games of the same style and ended up finding the Lavaspar Hunting.
+
+Lavaspar Hunting is a game that follows the same idea of the famous Word Search. However, instead of simply having to find a word in the matrix, the goal is to find any anagram of the word, making the game more difficult and interesting. The anagram can be found in a row, column or diagonal.
+
+An anagram is a word formed by rearranging the letters of another. Sometimes, an anagram does not exist as a word in the language, but this does not matter. BALO, LOBA and AOLB are examples of anagrams of the word BOLA.
+
+Bibika realized that it was possible for the same cell in the matrix to make part of anagrams of different words and then she started to call these special cells.
+
+Now she would like to know, given an array configuration and a collection of words, how many special cells are there?
+
+
+The picture above illustrates the first example, where the collection of words consists of three words: BOLA, CASA and BOI. The rectangles of each color represent anagrams of different words from the entry. The 
+3
+3 special cells are painted yellow.
+
+Input
+The first line contains two integers, 
+�
+L and 
+�
+C, which correspond to the number of lines and columns of the array, respectively.
+
+Each one of the next 
+�
+L lines contains a word with 
+�
+C letters.
+
+These lines are followed by a line containing an integer, 
+�
+N, which is the number of words in the collection of words to follow.
+
+Finally, there are now 
+�
+N lines, each of which contains a word in the collection.
+
+All characters in the array and in each word of the collection of words is a capital letter of the English alphabet.
+
+No two of the 
+�
+N words in the collection are anagrams of each other.
+
+2
+≤
+�
+,
+�
+≤
+40
+2≤L,C≤40.
+2
+≤
+�
+≤
+20
+2≤N≤20.
+The number 
+�
+P of letters of each of the 
+�
+N words is in the interval 
+2
+≤
+�
+≤
+min
+⁡
+(
+15
+,
+max
+⁡
+(
+�
+,
+�
+)
+)
+2≤P≤min(15,max(L,C)).
+Output
+The output consists of a single line that contains an integer corresponding to the number of special cells.
+
+Sample 1
+Input	Output
+4 5
+XBOIC
+DKIRA
+ALBOA
+BHGES
+3
+BOLA
+CASA
+BOI
+
+3
+Sample 2
+Input	Output
+3 3
+AAB
+ABA
+BAA
+2
+ABA
+BBB
+
+3
+Sample 3
+Input	Output
+2 4
+AAAA
+AAAA
+2
+AAA
+BBB
+
+0
+*************
+B - Escalator
+
+You have just invented a new type of escalator: the double escalator. Regular escalators take people from one endpoint to another but not in the other direction, while the double escalator can take people from any one of its endpoints to the other one.
+
+It takes 10 seconds for the double escalator to take a person from any of its endpoints to the other one. That is, if a person enters the double escalator from one of the endpoints at moment 
+�
+T, then they will leave at the other endpoint at moment 
+�
++
+10
+T+10 – this person won't be using the double escalator anymore at moment 
+�
++
+10
+T+10.
+
+Any time that no one is using the double escalator, it will stop immediately. Thus, it is initially stopped.
+
+When the double escalator is stopped and a person enters it from one of its endpoints, it will turn on automatically and move in the direction that this person wants to go.
+
+If a person arrives at the double escalator and it is already moving in the direction that they want to go, they will enter it immediately. Otherwise, if it's moving in the opposite direction that they want to go, they will wait until it stops, and only then will they enter it. The escalator is so large that it can accommodate many people entering it at the same time.
+
+The double escalator has a very weird effect, probably related to some quantum physics effect (or just chance): no person will ever arrive on the double escalator at the exact moment the escalator stops.
+
+Now that you know how the double escalator works, you will be given the task of simulating it. Given the information about 
+�
+N people, including their time of arrival at the escalator and which direction they want to go, you have to figure out the last moment that the escalator stops.
+
+Input
+The first line contains one integer 
+�
+N (
+1
+≤
+�
+≤
+1
+0
+4
+1≤N≤10 
+4
+ ), representing the number of people that will use the double escalator.
+
+Each of the next 
+�
+N lines contains two integers 
+�
+�
+t 
+i
+​
+  and 
+�
+�
+d 
+i
+​
+  (
+1
+≤
+�
+�
+≤
+1
+0
+5
+1≤t 
+i
+​
+ ≤10 
+5
+ , 
+0
+≤
+�
+�
+≤
+1
+0≤d 
+i
+​
+ ≤1), representing the time that the 
+�
+i-th person will arrive at the escalator and which direction they want to go. If 
+�
+�
+d 
+i
+​
+  is equal to 
+0
+0, they want to go from the left to the right endpoint, and if 
+�
+�
+d 
+i
+​
+  is equal to 
+1
+1, they want to go from the right to the left endpoint. All values of 
+�
+�
+t 
+i
+​
+  are distinct and will be given in ascending order.
+
+Output
+Output one line containing the time that the last person will leave the double escalator.
+
+Sample 1
+Input	Output
+3
+5 0
+8 0
+13 0
+
+23
+Sample 2
+Input	Output
+3
+5 0
+7 1
+9 0
+
+29
+Sample 3
+Input	Output
+3
+5 0
+10 1
+16 0
+
+35
+**************
+C - Playing 23
+
+Twenty-three is a simple card game played by kids. Like its name suggests, it is a variation of Blackjack, which is the most widely played game in casinos and gaming sites.
+
+The game uses a deck of 52 cards, with four suits, each suit with 13 cards (ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, jack, queen and king). Card suits are not relevant. The picture cards (jack, queen and king) are worth ten points, cards with numbers are worth their number in points (for example, the 4 card is worth four points) and the ace is worth one point.
+
+The player who has the most points wins, provided it does not exceed 23. If a player has a number of points greater than 23 we say the player busts.
+
+The game rules are simple: at each game, initially the deck is shuffled, the cards are placed in a stack and each player receives two cards from the stack. All cards are dealt face up (all players see all players' cards). The next step, called round, is repeated as long as there are active players: a card is taken from the stack and set on the table face up. This card, called common card, counts to all players. If a player busts, he leaves the game. The winner is the player that in a given round has a total of 23 points (considering their two starting cards plus the common cards), or if the player is the only active player at the end of the round. Note that there can be more than one winner (whose cards add up to 23) and that there may be no winner in a match.
+
+John and Mary are playing twenty-three. The two are the only players in the game, neither of them busted and neither of them has 23 points. Furthermore, the players score is such that the next common card may cause the game to end.
+
+Given John and Mary initial cards and the common cards, determine the lowest possible value of a card that should be taken from the stack in the next round for Mary to win the game.
+
+Input
+The first line of input contains a single integer 
+�
+N (
+1
+≤
+�
+≤
+8
+1≤N≤8), the number of rounds already played. Each card is described by an integer 
+�
+I (
+1
+≤
+�
+≤
+13
+1≤I≤13). Note that the picture cards (jack, queen and king) are represented in the input by the values 11, 12 and 13 which is not how many points they are worth. The second line contains two integers, describing the two initial cards for John. The third line contains two integers, describing the two initial cards for Mary. The fourth and last line contains 
+�
+N integers, describing the common cards, in the order they were taken from the stack.
+
+Output
+Your program should output a single line, containing a single integer, the value of the lowest card that must be taken from the stack in the next round for Mary to win the game, or -1 if Mary cannot win the match in that next round.
+
+Sample 1
+Input	Output
+1
+10 5
+9 10
+1
+
+3
+Sample 2
+Input	Output
+1
+10 5
+8 7
+2
+
+6
+Sample 3
+Input	Output
+1
+9 10
+10 5
+1
+
+4
+Sample 4
+Input	Output
+2
+8 4
+4 1
+4 4
+
+5
+Sample 5
+Input	Output
+8
+2 1
+1 1
+1 2 2 2 3 3 3 3
+
+-1
+***************
+D - Mother bear
+
+PDF file
+************
+E - Anagrams
+
+PDF file
+****************************
+F	- A Change in Thermal Unit
+
+PDF file
+**********************************
+G	- Rock-Paper-Scissors Tournament
+
+PDF file
+***************
+H	- Clock Hands
+
+PDF file
+*********
+I	- Dates
+
+PDF file
+*********************
+J	- What is the Card?
+
+PDF file
