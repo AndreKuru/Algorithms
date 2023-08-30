@@ -9,19 +9,17 @@ mary_cards = [int(x) for x in input().split()]
 common_cards = [int(x) for x in input().split()]
 all_cards = john_cards + mary_cards + common_cards
 
-max_card = 23 - (sum_points(mary_cards) + sum_points(common_cards))
-mary_winner = False
-if max_card >= 1:
-    if sum_points(mary_cards) >= sum_points(john_cards):
-        min_card = max_card
-    else:
-        min_card = 24 - (sum_points(john_cards) + sum_points(common_cards))
+for card in range(1, 14):
+    if all_cards.count(card) == 4:
+        continue
 
-    for card in range(min_card, max_card + 1):
-        if all_cards.count(card) < 4:
-            print(card)
-            mary_winner = True
-            break
+    if sum_points(mary_cards + common_cards + [card]) == 23:
+        print(card)
+        break
 
-if not mary_winner:
+    if (sum_points(john_cards + common_cards + [card]) > 23 
+        and sum_points(mary_cards + common_cards + [card]) < 23):
+        print(card)
+        break
+else:
     print(-1)
