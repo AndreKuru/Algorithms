@@ -1,27 +1,34 @@
 tests_amount = int(input())
 
 input()
-
 for test in range(tests_amount):
     words = list()
-    normalized = dict()
+    anagrams = dict()
     word = input()
     while word:
         words.append(word)
-        word_normalized = sorted(word.replace(" ", ""))
-        normalized[word] = word_normalized
+        anagram = "".join(sorted(word.replace(" ", "")))
+        if anagram not in anagrams:
+            anagrams[anagram] = [word]
+        else:
+            anagrams[anagram] += [word]
 
         try:
             word = input()
         except EOFError:
             break
 
-    words.sort()
-    for i in range(len(words)):
-        word = words[i]
-        for another_word in words[i + 1:]:
-            if normalized[word] == normalized[another_word]:
-                print(f"{word} = {another_word}")
+    pairs = list()
+    for equal_words in anagrams.values():
+        equal_words.sort()
+        for i in range(len(equal_words)):
+            word = equal_words[i]
+            for another_word in equal_words[i + 1:]:
+                pairs.append(f"{word} = {another_word}")
+
+    pairs.sort()
+    for pair in pairs:
+        print(pair)
 
     if test < tests_amount - 1:
         print()
