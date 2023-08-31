@@ -5,7 +5,7 @@ while(line != "0"):
     n, k = [int(x) for x in line.split()]
     winner = [0] * n
     loser = [0] * n
-    for _ in range(k):
+    for _ in range(int(k*n*(n - 1)/2)):
         line = input()
         p1, m1, p2, m2 = line.split()
         p1 = int(p1)
@@ -40,8 +40,14 @@ while(line != "0"):
 for i in range(len(winners)):
     winner = winners[i]
     loser = losers[i]
+
+
     for j in range(len(winner)):
-        print(f"{winner[j] / (winner[j] + loser[j]):.3f}")
+        total_plays = winner[j] + loser[j]
+        if total_plays:
+            print(f"{winner[j] / (winner[j] + loser[j]):.3f}")
+        else:
+            print("-")
 
     if i < len(winners) - 1:
         print("")
