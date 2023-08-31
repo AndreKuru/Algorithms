@@ -3,7 +3,8 @@
 #include <ctype.h>
 #include <algorithm>
 
-int main(){
+int main()
+{
 
     char word[55];
     scanf("%s", word);
