@@ -4,7 +4,7 @@
 #include <sstream>
 #include <queue>
 #include <stack>
-#include <exception>
+#include <stdexcept>
 
 void unstack_coach(std::queue<int> &expected_coaches, std::stack<int> &station)
 {
