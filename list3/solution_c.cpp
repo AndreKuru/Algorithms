@@ -3,13 +3,14 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 int main()
 {
     int numbers_amount, number = 0;
     scanf("%d%*c", &numbers_amount);
     while(numbers_amount != 0){
-        std::priority_queue<int> numbers;
+        std::priority_queue<int,std::vector<int>,std::greater<int>> numbers;
         std::string line;
         std::getline(std::cin, line);
         std::stringstream buf(line);
@@ -19,12 +20,12 @@ int main()
         }
 
         int sum = 0;
+        int cost = numbers.top();
         for (int i = 1; i < numbers_amount; i++){
-            sum += numbers.top() * i;
             numbers.pop();
+            cost = cost + numbers.top();
+            sum += cost;
         }
-
-        sum += numbers.top() * (numbers_amount - 1);
 
         printf("%d\n", sum);
 
