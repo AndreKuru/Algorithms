@@ -4,25 +4,35 @@
 
 int main()
 {
-    int tests_amount, friends_amount, stamps_amount;
-    std::map<int, std::set<int>> stamps_owneds;
+    int froshs_amount, most_popular;
+    scanf("%d ", &froshs_amount);
+    while(froshs_amount > 0) {
+        most_popular = 0;
+        std::map<std::set<int>, int> popularity;
+        for (int frosh = 0; frosh < froshs_amount; frosh++) {
+            std::set<int> courses_combination;
 
-    scanf("%d", &tests_amount);
-    for (int test = 0; test < tests_amount; test++) {
+            int course;
+            for (int i = 0; i < 5; i++) {
+                scanf("%d ", &course);
+                courses_combination.insert(course);
+            }
+            popularity[courses_combination]++;
 
-        scanf("%d", &friends_amount);
-        for (int friend_id = 0; friend_id < friends_amount; friend_id++) {
-
-            scanf("%d", &stamps_amount);
-            for (int stamp = 0; stamp < stamps_amount; stamp++) {
-                if (stamps_owneds.find(stamp) == stamps_owneds.end()) {
-                    stamps_owneds[stamp].insert(friend_id);
-                } else {
-                    std::set<int> friends_owners;
-                    friends_owners.insert(friend_id);
-                    stamps_owneds[stamp] = friends_owners;
-                }
+            if (most_popular < popularity[courses_combination]) {
+                most_popular = popularity[courses_combination];
             }
         }
+
+        auto froshs_popular = 0;
+        for (auto it = popularity.begin(); it != popularity.end(); it++) {
+            if (it->second == most_popular) {
+                froshs_popular += most_popular;
+            }
+        }
+
+        printf("%d\n", froshs_popular);
+
+        scanf("%d ", &froshs_amount);
     }
 }
