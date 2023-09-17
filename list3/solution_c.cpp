@@ -20,10 +20,13 @@ int main()
         }
 
         int sum = 0;
-        int cost = numbers.top();
-        for (int i = 1; i < numbers_amount; i++){
+        while (numbers.size() > 1) {
+            auto first_min = numbers.top();
             numbers.pop();
-            cost = cost + numbers.top();
+            auto second_min = numbers.top();
+            numbers.pop();
+            auto cost = first_min + second_min;
+            numbers.push(cost);
             sum += cost;
         }
 

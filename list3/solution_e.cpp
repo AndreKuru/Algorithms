@@ -21,14 +21,14 @@ void check_train(int train_size, std::queue<int> expected_coaches)
 {
     std::stack<int> station;
     for(int incoming_coach = 1; incoming_coach <= train_size; incoming_coach++){
+        // While next coach must already arrived search in the station
+        while (incoming_coach > expected_coaches.front()){
+            unstack_coach(expected_coaches, station);
+        }
+
         if (incoming_coach < expected_coaches.front()){
             station.push(incoming_coach);
         } else {
-
-            // While next coach must already arrived search in the station
-            while (incoming_coach > expected_coaches.front()){
-                unstack_coach(expected_coaches, station);
-            }
             expected_coaches.pop();
         }
     }
@@ -45,12 +45,6 @@ int main()
     int train_size;
     scanf("%d%*c", &train_size);
     while(train_size > 0){
-        if (blank_line){
-            printf("\n");
-        } else {
-            blank_line = true;
-        }
-
         while(true){
             std::string line;
             std::getline(std::cin, line);
@@ -73,6 +67,7 @@ int main()
                 printf("No\n");
             }
         }
+        printf("\n");
         scanf("%d%*c", &train_size);
     }
 }

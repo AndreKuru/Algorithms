@@ -13,16 +13,21 @@ int main()
         }
 
 
-        printf("Discarded cards: ");
-        while(deck.size() > 2){
-            printf("%d, ", deck.front());
+        printf("Discarded cards:");
+        auto first_case = true;
+        while(deck.size() >= 2){
+            if (not first_case) {
+                printf(", %d", deck.front());
+            } else {
+                first_case = false;
+                printf(" %d", deck.front());
+            }
             deck.pop();
 
             deck.push(deck.front());
             deck.pop();
         }
-        printf("%d\n", deck.front());
-        deck.pop();
+        printf("\n");
 
         printf("Remaining card: %d\n", deck.front());
         scanf("%d", &n);
