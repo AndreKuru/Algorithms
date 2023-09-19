@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <vector>
-#include <utility>
 #include <string>
 #include <algorithm>
 #include <set>
-#include <iostream>
-#include <iterator>
 
 std::string find_denominator(std::string numerator_str, int expected_result)
 {
@@ -24,31 +21,24 @@ std::string find_denominator(std::string numerator_str, int expected_result)
         denominator_str = '0' +  denominator_str;
     }
 
-    auto denominator_set = std::set<char> (denominator_str.begin(), denominator_str.end());
+    auto all_numerals = numerator_str + denominator_str;
+    auto all_numerals_set = std::set<char> (all_numerals.begin(), all_numerals.end());
 
-    if (denominator_set.size() == denominator_str.size()) {
+    if (all_numerals_set.size() == all_numerals.size()) {
         return denominator_str;
     }
-
 
     return std::string();
 }
 
 void try_num(std::string& num_str, int expected_result, std::vector<std::pair<std::string, std::string>>& answers)
 {
-    printf("%s\n", num_str.c_str());
-
     auto numerator = num_str.substr(0, 5);
     auto denominator = find_denominator(numerator, expected_result);
 
     if (denominator != std::string()) {
         auto answer = std::make_pair(numerator, denominator);
         answers.push_back(answer);
-    }
-
-    auto is_new_numerator = std::next_permutation(num_str.begin(), num_str.end());
-    if (is_new_numerator) {
-        try_num(num_str, expected_result, answers);
     }
 }
 int main()
@@ -65,10 +55,17 @@ int main()
 
         auto num_str = std::string("0123456789");
         auto answers = std::vector<std::pair<std::string, std::string>>{};
-        try_num(num_str, expected_result, answers);
+        auto is_new_num_str = true;
+        while(is_new_num_str) {
+            try_num(num_str, expected_result, answers);
+            auto old_numerator = num_str.substr(0, 5);
+            do {
+                is_new_num_str = std::next_permutation(num_str.begin(), num_str.end());
+            } while(old_numerator == num_str.substr(0, 5)); 
+        }
 
         if (answers.empty()) {
-            printf("There are no solutions for %d.", expected_result);
+            printf("There are no solutions for %d.\n", expected_result);
         } else {
             for (auto answer : answers) {
                 printf("%s / %s = %d\n", answer.first.c_str(), answer.second.c_str(), expected_result);
