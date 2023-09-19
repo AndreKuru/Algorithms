@@ -31,9 +31,9 @@ std::string find_denominator(std::string numerator_str, int expected_result)
     return std::string();
 }
 
-void try_num(std::string& num_str, int expected_result, std::vector<std::pair<std::string, std::string>>& answers)
+void try_num(std::string& number_str, int expected_result, std::vector<std::pair<std::string, std::string>>& answers)
 {
-    auto numerator = num_str.substr(0, 5);
+    auto numerator = number_str.substr(0, 5);
     auto denominator = find_denominator(numerator, expected_result);
 
     if (denominator != std::string()) {
@@ -44,7 +44,11 @@ void try_num(std::string& num_str, int expected_result, std::vector<std::pair<st
 
 bool next_numerator(std::string& number_str){
     auto found = false;
-    auto it = std::prev(number_str.end());
+    //auto it = std::prev(number_str.end());
+    auto it = number_str.begin();
+    for (auto i = 0; i < 6; ++i) {++it;}
+    std::reverse(std::next(it), number_str.end());
+
     for (; it != number_str.begin(); --it) {
         if (*std::prev(it) < *it) {
             found = true;
@@ -84,20 +88,44 @@ int main()
             blank_line = true;
         }
 
-        auto num_str = std::string("0123456789");
+        auto number_str = std::string("0123456789");
         auto answers = std::vector<std::pair<std::string, std::string>>{};
-        auto is_new_num_str = true;
-        while(is_new_num_str) {
-            try_num(num_str, expected_result, answers);
-            auto old_numerator = num_str.substr(0, 5);
+        auto is_new_number_str = true;
+        while(is_new_number_str) {
+            try_num(number_str, expected_result, answers);
+            auto old_numerator = number_str.substr(0, 5);
+
+            auto debug = false;
+            auto old_denominator = number_str.substr(5);
+            auto new_denominator = old_denominator;
+            auto new_denominator_rev = new_denominator;
+            if (debug){
+                printf("****IN*****\n");
+            }
             do {
                 ++cont;
-                // printf("%s\n", num_str.c_str());
-                is_new_num_str = next_numerator(num_str);
-                // is_new_num_str = std::next_permutation(num_str.begin(), num_str.end());
-            } while(old_numerator == num_str.substr(0, 5) and is_new_num_str); 
+                auto numerator = number_str.substr(0, 5);
+                auto denominator = number_str.substr(5);
+                std::reverse(denominator.begin(), denominator.end());
+                number_str = numerator + denominator;
+                if (debug){
+                    auto numerator = number_str.substr(0, 5);
+                    new_denominator = number_str.substr(5);
+                    new_denominator_rev = new_denominator;
+                    std::reverse(new_denominator_rev.begin(), new_denominator_rev.end());
+                    printf("%s %s|%s\n", numerator.c_str(), new_denominator.c_str(), new_denominator_rev.c_str());
+                    is_new_number_str = next_numerator(number_str);
+                }
+
+                is_new_number_str = std::next_permutation(number_str.begin(), number_str.end());
+            } while(old_numerator == number_str.substr(0, 5) and is_new_number_str); 
+            if (debug){
+                printf("****OUT****\n");
+                auto is_reverse = old_denominator == new_denominator_rev;
+                printf("%s => %s | %s\n", old_denominator.c_str(), new_denominator.c_str(), is_reverse ? "reverse" : "not");
+            }
         }
-        printf("cont: %d\n", cont);
+        // printf("cont: %d\n", cont);
 
         if (answers.empty()) {
             printf("There are no solutions for %d.\n", expected_result);
