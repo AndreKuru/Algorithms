@@ -21,9 +21,10 @@ int main()
         auto bmask_limit = 1 << bars_amount;
         for (auto bmask = 0; bmask < bmask_limit; ++bmask) {
             auto selected_bars_sum = 0;
-            for (auto i = 0; i <= bmask; ++i) {
-                printf("limit=%d bmask=%d i=%d b=%d\n", bmask_limit, bmask, i, 1 << i -1);
-                selected_bars_sum += bmask & (1 << i) - 1;
+            for (auto i = 0; i < bars_amount; ++i) {
+                if (bmask & (1 << i)) {
+                    selected_bars_sum += bars.at(i);
+                }
             }
 
             if (selected_bars_sum == bars_length) {
