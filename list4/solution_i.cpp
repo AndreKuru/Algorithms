@@ -47,14 +47,6 @@ int main()
     auto solutions = std::vector<std::vector<int>> {};
     try_queen(solutions, queens);
 
-    // Print solutions
-    // for (auto& solution: solutions) {
-    //     for (auto it = solution.begin(); it != solution.end(); ++it) {
-    //         printf("%d ", *it);
-    //     }
-    //     printf("\n");
-    // }
-
     queens = std::vector<int> {};
     int queen;
     auto test = 0;
@@ -67,13 +59,7 @@ int main()
         }
 
         auto min_moves = 8;
-        // auto best_queens = std::vector<int> {};
         for (auto& solution: solutions) {
-            // for (auto it = solution.begin(); it != solution.end(); ++it) {
-            //     printf("%d ", *it);
-            // }
-            // printf("\n");
-
             auto it_reference = solution.begin();
             auto it = queens.begin();
             auto moves = 0;
@@ -87,16 +73,10 @@ int main()
 
             if (min_moves > moves) {
                 min_moves = moves;
-                // best_queens = solution;
-                // printf("BETTER\n\n");
             }
         }
 
         printf("Case %d: %d\n", test, min_moves);
-        // for (auto it = best_queens.begin(); it != best_queens.end(); ++it) {
-        //     printf("%d ", *it);
-        // }
-        // printf("\n");
         queens = std::vector<int> {};
     }
 }
