@@ -2,6 +2,7 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
+#include <set>
 
 using domino = std::pair<int, int>;
 
@@ -25,9 +26,9 @@ bool check_new_piece(std::vector<domino>& selected_pieces, domino& initial_piece
     return true;
 }
 
-bool try_more_pieces(std::vector<domino>& fill_pieces, std::vector<domino>& selected_pieces, domino& initial_piece, domino& final_piece, int spaces_amount);
+bool try_more_pieces(std::multiset<domino>& fill_pieces, std::vector<domino>& selected_pieces, domino& initial_piece, domino& final_piece, int spaces_amount);
 
-bool try_piece(std::vector<domino>& fill_pieces, std::vector<domino>& selected_pieces, domino& initial_piece, domino& final_piece, int spaces_amount, domino& new_piece)
+bool try_piece(std::multiset<domino>& fill_pieces, std::vector<domino>& selected_pieces, domino& initial_piece, domino& final_piece, int spaces_amount, domino& new_piece)
 {
     if (check_new_piece(selected_pieces, initial_piece, final_piece, spaces_amount, new_piece)) {
         selected_pieces.push_back(new_piece);
@@ -38,12 +39,6 @@ bool try_piece(std::vector<domino>& fill_pieces, std::vector<domino>& selected_p
                 selected_pieces.pop_back();
             }
         } else {
-            // printf("\n");
-            // printf("%d %d\n", initial_piece.first, initial_piece.second);
-            // for (auto piece: selected_pieces) {
-            //     printf("%d %d\n", piece.first, piece.second);
-            // }
-            // printf("%d %d\n", final_piece.first, final_piece.second);
             return true;
         }
     }
@@ -51,7 +46,7 @@ bool try_piece(std::vector<domino>& fill_pieces, std::vector<domino>& selected_p
     return false;
 }
 
-bool try_more_pieces(std::vector<domino>& fill_pieces, std::vector<domino>& selected_pieces, domino& initial_piece, domino& final_piece, int spaces_amount)
+bool try_more_pieces(std::multiset<domino>& fill_pieces, std::vector<domino>& selected_pieces, domino& initial_piece, domino& final_piece, int spaces_amount)
 {
     for (auto new_piece: fill_pieces) {
         auto used_pieces = 0;
@@ -74,8 +69,8 @@ bool try_more_pieces(std::vector<domino>& fill_pieces, std::vector<domino>& sele
             }
         }
 
-        // if (it == selected_pieces.end()){
-        if (used_pieces < 1){
+        auto total_duplicated_new_pieces = fill_pieces.count(new_piece);
+        if (used_pieces < total_duplicated_new_pieces){
             if (try_piece(fill_pieces, selected_pieces, initial_piece, final_piece, spaces_amount, new_piece)) {
                 return true;
             } else if (new_piece.first != new_piece.second) {
@@ -106,11 +101,14 @@ int main()
         scanf("%d %d%*c", &piece_value0, &piece_value1);
         auto final_piece = std::make_pair(piece_value0, piece_value1);
 
-        auto fill_pieces = std::vector<domino> {};
+        auto fill_pieces = std::multiset<domino> {};
         for (auto i = 0; i < fill_pieces_amount; ++i) {
             scanf("%d %d%*c", &piece_value0, &piece_value1);
             auto fill_piece = std::make_pair(piece_value0, piece_value1);
-            fill_pieces.push_back(fill_piece);
+            if (piece_value0 > piece_value1) {
+                std::swap(fill_piece.first, fill_piece.second);
+            }
+            fill_pieces.insert(fill_piece);
         }
 
         auto selected_pieces = std::vector<domino> {};
